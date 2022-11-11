@@ -8,7 +8,7 @@ h1 {
     margin-left: 10px;
     margin-right: 10px;
 }
-h3 {
+h2 {
     text-align: center;
     margin-top: 10px;
 }
@@ -25,6 +25,10 @@ div {
     border-color: black;
     border-style: solid;
     border-radius: 20px;
+
+    display: grid;
+    
+    margin: 20px;
 }
 
 p {
