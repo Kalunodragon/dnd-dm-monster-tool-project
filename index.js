@@ -65,7 +65,9 @@ function deleteMonster(e){
 }
 
 function addCopyOfMonsterToSelection(thisMonster){
-    console.log(thisMonster.target.parentNode.parentNode)
+    let newLocation = document.getElementById('monsters-field')
+    let monsterClone = thisMonster.target.parentNode.parentNode.cloneNode(true)
+    newLocation.appendChild(monsterClone)
 }
 
 function changeColor(e){
