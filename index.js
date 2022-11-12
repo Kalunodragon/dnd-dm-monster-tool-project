@@ -2,17 +2,11 @@
 const formInput = document.getElementById('input-text-feild')
 const formSubmit = document.getElementById('search-button')
 const monsterCards = document.getElementById('monster-cards')
-// Event Listeners
-// formSubmit.addEventListener('click', initialMonstersFetch)
 
+// Page initial load function call
 initialMonstersFetch()
 
 // Functions
-// function fetchMonsters(e){
-//     e.preventDefault()
-//     initialMonstersFetch()
-// }
-
 function displayMonsters(monster){
     const h2 = document.createElement('h2')
     h2.innerText = monster.name
@@ -29,12 +23,25 @@ function displayMonsters(monster){
     const h4 = document.createElement('h4')
     h4.innerText = 'Hit Points: ' + monster.hit_points
 
+    const btnSpan = document.createElement('span')
+    btnSpan.className = `delete-button ${monster.name}`
+
+    const btn = document.createElement('button')
+    btn.innerText = 'Remove Monster'
+    btn.addEventListener('click', (e) => showAllMonsterInfo(e))
+    btnSpan.append(btn)
+
     const div = document.createElement('div')
     div.id = `${monster.name}`
-    div.append(h2, h4, p, p2, p3)
+    // div.hidden = true
+
+    div.append(h2, h4, p, p2, p3, btnSpan)
     monsterCards.appendChild(div)
 }
 
+function showAllMonsterInfo(e){
+    console.log(e.target.parentNode)
+}
 
 // Fetch Functions
 function initialMonstersFetch(){
