@@ -42,6 +42,27 @@ p {
     text-align: center;
 }
 
+span {
+    display: flex;
+    justify-content: center;
+}
+button {
+    transition: 0.5s;
+    color: black;
+    border-color: black;
+    background-color: transparent;
+    border-radius: 10px;
+    margin: auto;
+    text-align: center;
+    margin: 10px;
+}
+button:hover {
+    transition: 0.5s;
+    color: white;
+    border-color: red;
+    background-color: red;
+}
+
 form {
     text-align: center;
     box-sizing: border-box;
