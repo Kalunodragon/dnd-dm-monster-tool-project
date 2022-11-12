@@ -40,7 +40,7 @@ function displayMonsters(monster){
     const div = document.createElement('div')
     div.id = `${monster.name}`
     // div.hidden = true
-
+// error test
     div.append(h2, h4, p, p2, p3, btnSpan)
     monsterCards.appendChild(div)
 }
