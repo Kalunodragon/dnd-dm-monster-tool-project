@@ -34,8 +34,18 @@ function displayMonsters(monster){
     const btn = document.createElement('button')
     btn.innerText = 'Remove Monster'
     btn.id = 'remove-btn'
+    btn.hidden = true
     btn.addEventListener('click', (e) => deleteMonster(e))
-    btnSpan.append(btn)
+    btn.addEventListener('mouseover', (e) => changeColor(e))
+    btn.addEventListener('mouseleave', (e) => changeColorBack(e))
+
+    const btn2 = document.createElement('button')
+    btn2.innerText = 'Add Monster'
+    btn2.id = 'add-btn'
+    btn2.addEventListener('click', (e) => addCopyOfMonsterToSelection(e))
+    btn2.addEventListener('mouseover', (e) => changeColor(e))
+    btn2.addEventListener('mouseleave', (e) => changeColorBack(e))
+    btnSpan.append(btn, btn2)
     
     const div = document.createElement('div')
     div.id = `${monster.name}`
@@ -52,6 +62,22 @@ function displayMonsters(monster){
 
 function deleteMonster(e){
     e.target.parentNode.parentNode.hidden = true
+}
+
+function addCopyOfMonsterToSelection(thisMonster){
+    console.log(thisMonster.target.parentNode.parentNode)
+}
+
+function changeColor(e){
+    if(e.target.id === 'remove-btn'){
+        e.target.className = 'red-btn-mouse-over'
+    }
+    if(e.target.id === 'add-btn'){
+        e.target.className = 'blue-btn-mouse-over'
+    }
+}
+function changeColorBack(e){
+    e.target.className = ''
 }
 
 function monsterSearch(e){
@@ -88,7 +114,7 @@ function singleMonsterFetch(URL){
     return fetch(`https:www.dnd5eapi.co${URL}`)
     .then(resp => resp.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
         displayMonsters(data)
     })
 }
