@@ -2,10 +2,12 @@
 const formInput = document.getElementById('input-text-feild')
 const formSubmit = document.getElementById('search-button')
 const monsterCards = document.getElementById('monster-cards')
+const form = document.getElementById('search-form')
 
 // Page initial load function call
 initialMonstersFetch()
-
+// Event listeners
+form.addEventListener('submit', (e) => monsterSearch(e))
 // Functions
 function displayMonsters(monster){
     const h2 = document.createElement('h2')
@@ -28,7 +30,7 @@ function displayMonsters(monster){
 
     const btn = document.createElement('button')
     btn.innerText = 'Remove Monster'
-    btn.addEventListener('click', (e) => showAllMonsterInfo(e))
+    btn.addEventListener('click', (e) => deleteMonster(e))
     btnSpan.append(btn)
 
     const div = document.createElement('div')
@@ -39,8 +41,25 @@ function displayMonsters(monster){
     monsterCards.appendChild(div)
 }
 
-function showAllMonsterInfo(e){
-    console.log(e.target.parentNode)
+function deleteMonster(e){
+    e.target.parentNode.parentNode.hidden = true
+}
+
+function monsterSearch(e){
+    e.preventDefault()
+    let MonsterHeader = document.querySelectorAll('div')
+    MonsterHeader.forEach(monster => {
+        let input = formInput.value.toUpperCase()
+        if(input === ''){
+            monster.hidden = false
+        }
+        if(input.length === 1){
+            input !== monster.id.charAt(0) ? monster.hidden = true: monster.hidden = false      
+        }
+        if(input.length > 1){
+            input !== monster.id.toUpperCase() ? monster.hidden = true : monster.hidden = false
+        }
+    })
 }
 
 // Fetch Functions
@@ -48,7 +67,6 @@ function initialMonstersFetch(){
     return fetch('https://www.dnd5eapi.co/api/monsters/')
     .then(resp => resp.json())
     .then(data => {
-        console.log(data)
         const monsterArray = data.results
         monsterArray.forEach(monster => {
             singleMonsterFetch(`${monster.url}`)
@@ -60,7 +78,7 @@ function singleMonsterFetch(URL){
     return fetch(`https:www.dnd5eapi.co${URL}`)
     .then(resp => resp.json())
     .then(data => {
-        console.log(data)
+        // console.log(data)
         displayMonsters(data)
     })
 }
