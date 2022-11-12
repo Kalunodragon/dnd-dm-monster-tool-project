@@ -36,11 +36,16 @@ function displayMonsters(monster){
     btn.id = 'remove-btn'
     btn.addEventListener('click', (e) => deleteMonster(e))
     btnSpan.append(btn)
-
+    
     const div = document.createElement('div')
     div.id = `${monster.name}`
-    // div.hidden = true
-// error test
+
+    if(monster.image){
+        const img = document.createElement('img')
+        img.src = `https://www.dnd5eapi.co${monster.image}`
+        div.append(img)
+    }
+
     div.append(h2, h4, p, p2, p3, btnSpan)
     monsterCards.appendChild(div)
 }
@@ -83,7 +88,7 @@ function singleMonsterFetch(URL){
     return fetch(`https:www.dnd5eapi.co${URL}`)
     .then(resp => resp.json())
     .then(data => {
-        // console.log(data)
+        console.log(data)
         displayMonsters(data)
     })
 }
