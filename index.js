@@ -1,35 +1,39 @@
 // Variables
 const formInput = document.getElementById('input-text-feild')
-const formSubmit = document.getElementById('search-button')
 const monsterCards = document.getElementById('monster-cards')
 const form = document.getElementById('search-form')
+const battleField = document.getElementById('monsters-field')
 
 // Page initial load function call
 initialMonstersFetch()
+
 // Event listeners
 form.addEventListener('submit', (e) => monsterSearch(e))
+
 // Functions
 function displayMonsters(monster){
+    // Monster Name
     const h2 = document.createElement('h2')
     h2.innerText = monster.name
-
+    // Monster Alignment
     const p = document.createElement('p')
     p.innerText = 'Alignment: ' + monster.alignment
-
+    // Challenge Rating
     const p2 = document.createElement('p')
     p2.innerText = 'Challenge Rating: ' + monster.challenge_rating
-
+    // XP
     const p3 = document.createElement('p')
     p3.innerText = 'XP: ' + monster.xp
-
+    // Hit Points
     const h4 = document.createElement('h4')
     h4.innerText = 'Hit Points: ' + monster.hit_points
-
+    // Button Span
     const btnSpan = document.createElement('span')
-    btnSpan.className = `delete-button ${monster.name}`
-
+    btnSpan.className = `${monster.name} buttons`
+    // Remove Button
     const btn = document.createElement('button')
     btn.innerText = 'Remove Monster'
+    btn.id = 'remove-btn'
     btn.addEventListener('click', (e) => deleteMonster(e))
     btnSpan.append(btn)
 
@@ -72,6 +76,7 @@ function initialMonstersFetch(){
             singleMonsterFetch(`${monster.url}`)
         })
     })
+    .catch(err => console.alert(err))
 }
 
 function singleMonsterFetch(URL){

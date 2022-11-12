@@ -22,14 +22,24 @@
             <input id="input-text-feild" type="text" placeholder="Instert Monster Name"/>
             <input id="search-button" type="submit" value="Search"/>
         </form>
+
+        <field id="battle-field">
+            Current monsters selected
+            <grid id="monsters-field">
+
+            </grid>
+        </field>
+
         <grid id="monster-cards">
             <!--
                 What do I want to display here???
                 --Random Monster button
-                    -Displays a random monster
+                    -Adds a random monster to battlefeild
                 --Specific Monster search
                     -Displays a monster with that name
                         -if no match displays check spelling error
+                --Clear battle feild
+                    -Clears all the monsters out of the battle feild
                 
                 monsters display:
                     -has:

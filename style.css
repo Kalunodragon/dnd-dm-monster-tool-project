@@ -25,6 +25,10 @@ body {
     background-color: rgb(227, 209, 186);
 }
 
+field {
+    text-align: center;
+}
+
 grid {
     margin: 20px;
     display: grid;
