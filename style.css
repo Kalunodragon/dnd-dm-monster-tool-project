@@ -12,6 +12,15 @@ h2 {
     text-align: center;
     margin-top: 10px;
 }
+#battle-field {
+    color: rgb(116, 0, 0);
+    border-bottom: 5px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-style: solid;
+}
+
 h3 {
     text-align: center;
 }
@@ -67,11 +76,17 @@ button {
     text-align: center;
     margin: 10px;
 }
-button:hover {
+.red-btn-mouse-over {
     transition: 0.5s;
     color: white;
     border-color: red;
     background-color: red;
+}
+.blue-btn-mouse-over {
+    transition: 0.5s;
+    color: white;
+    border-color: rgb(48, 107, 255);
+    background-color: rgb(48, 107, 255);
 }
 
 form {
