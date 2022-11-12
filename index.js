@@ -20,12 +20,18 @@ function displayMonsters(monster){
     const p = document.createElement('p')
     p.innerText = 'Alignment: ' + monster.alignment
 
+    const p2 = document.createElement('p')
+    p2.innerText = 'Challenge Rating: ' + monster.challenge_rating
+
+    const p3 = document.createElement('p')
+    p3.innerText = 'XP: ' + monster.xp
+
     const h4 = document.createElement('h4')
     h4.innerText = 'Hit Points: ' + monster.hit_points
 
     const div = document.createElement('div')
     div.id = `${monster.name}`
-    div.append(h2, h4, p)
+    div.append(h2, h4, p, p2, p3)
     monsterCards.appendChild(div)
 }
 
