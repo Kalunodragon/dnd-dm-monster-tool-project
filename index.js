@@ -1,44 +1,43 @@
-// Variables
+// Global Variables
 const formInput = document.getElementById('input-text-feild')
 const monsterCards = document.getElementById('monster-cards')
 const form = document.getElementById('search-form')
 const battleField = document.getElementById('monsters-field')
 
-// Page initial load function call
+// Page initial Fetch for loading Monster Cards
 initialMonstersFetch()
 
-// Event listeners
+// Global Event listeners
 form.addEventListener('submit', (e) => monsterSearch(e))
 
-// Functions
+// CREATION FUNCTION ------------------------------------------------------------------------------
+// Creates all the monster cards based off of information from the initial fetch request
 function displayMonsters(monster){
     // Monster Name
     const h2 = document.createElement('h2')
     h2.innerText = monster.name
+
     // Monster Alignment
     const p = document.createElement('p')
     p.innerText = 'Alignment: ' + monster.alignment
+
     // Challenge Rating
     const p2 = document.createElement('p')
     p2.innerText = 'Challenge Rating: ' + monster.challenge_rating
+
     // XP
     const p3 = document.createElement('p')
     p3.innerText = 'XP: ' + monster.xp
+
     // Hit Points
     const h4 = document.createElement('h4')
     h4.innerText = 'Hit Points: ' + monster.hit_points
+
     // Button Span
     const btnSpan2 = document.createElement('span')
     btnSpan2.classList = `${monster.name} buttons`
-    // Remove Button
-    // const btn = document.createElement('button')
-    // btn.innerText = 'Remove Monster'
-    // btn.className = 'remove-btn'
-    // btn.hidden = true
-    // btn.addEventListener('click', (e) => deleteMonster(e))
-    // btn.addEventListener('mouseover', (e) => changeColor(e))
-    // btn.addEventListener('mouseleave', (e) => changeColorBack(e))
 
+    // Creates Add Button & Event Listeners
     const btn2 = document.createElement('button')
     btn2.innerText = 'Add Monster'
     btn2.classList = 'add-btn'
@@ -46,10 +45,12 @@ function displayMonsters(monster){
     btn2.addEventListener('mouseover', (e) => changeColor(e))
     btn2.addEventListener('mouseleave', (e) => changeColorBack(e))
     btnSpan2.append(btn2)
-    
+
+    // Div Creation
     const div = document.createElement('div')
     div.id = `${monster.name}`
 
+    // Image => Only if there is an image
     if(monster.image){
         const img = document.createElement('img')
         img.src = `https://www.dnd5eapi.co${monster.image}`
@@ -59,37 +60,46 @@ function displayMonsters(monster){
     div.append(h2, h4, p, p2, p3, btnSpan2)
     monsterCards.appendChild(div)
 }
+// END OF CREATION FUNCTION------------------------------------------------------------------------
 
-function displayMonsterCopy(){
-    // Recreate monster card as new element using (previous div, new fetch) with remove btn
-}
-
+// Functions
+// Deletes Monster from the Selected Monsters area
 function deleteMonster(e){
     let selected = e.target.parentNode.parentNode
     selected.remove()
 }
 
+// Adds a copy of the selected monster to the Selected Monster Area
+// Also adds the Event Listeners for the Remove Monster button
 function addCopyOfMonsterToSelection(thisMonster){
     let newLocation = document.getElementById('monsters-field')
     let monsterClone = thisMonster.target.parentNode.parentNode.cloneNode(true)
+
+    // Adding Class, Removing id, Removing Add Button
     monsterClone.classList.add('selected-monster')
     monsterClone.removeAttribute('id')
+    monsterClone.querySelector('span').children[0].remove()
 
+    // Creates new span for moving button with CSS
     const btnSpan = monsterClone.querySelector('span')
     const btn = document.createElement('button')
+
+    // Creates Remove Button & Event Listeners
     btn.innerText = 'Remove Monster'
     btn.className = 'remove-btn'
     btn.addEventListener('click', (e) => deleteMonster(e))
     btn.addEventListener('mouseover', (e) => changeColor(e))
     btn.addEventListener('mouseleave', (e) => changeColorBack(e))
+
+    // Appending
     btnSpan.append(btn)
-    monsterClone.querySelector('span').children[0].remove()
     monsterClone.append(btnSpan)
-
-
     newLocation.appendChild(monsterClone)
 }
 
+// Functions for mouseover & mouseleave Event Listeners
+// Changes the colors of the buttons when the mouse is over
+// Changes the colors of the buttons back when mouse leaves
 function changeColor(btn){
     if(btn.target.className === 'remove-btn'){
         btn.target.classList.toggle('red-btn-mouse-over')
@@ -107,6 +117,7 @@ function changeColorBack(btn){
     }
 }
 
+// Monster Search Function, Allows for Name search, Sorting by letter, And Clears to show all Monster Cards
 function monsterSearch(e){
     e.preventDefault()
     let MonsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
@@ -124,7 +135,7 @@ function monsterSearch(e){
     })
 }
 
-// Fetch Functions
+// Fetch Functions For getting all the API Information for the monsters
 function initialMonstersFetch(){
     return fetch('https://www.dnd5eapi.co/api/monsters/')
     .then(resp => resp.json())
@@ -134,7 +145,7 @@ function initialMonstersFetch(){
             singleMonsterFetch(`${monster.url}`)
         })
     })
-    // .catch(err => console.alert(err))
+    .catch(err => console.warn(err))
 }
 
 function singleMonsterFetch(URL){
@@ -144,5 +155,5 @@ function singleMonsterFetch(URL){
         // console.log(data)
         displayMonsters(data)
     })
-    // .catch(err => console.alert(err))
+    .catch(err => console.warn(err))
 }
