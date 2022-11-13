@@ -1,5 +1,5 @@
 // Global Variables
-const formInput = document.getElementById('input-text-feild')
+const formInput = document.getElementById('input-text-field')
 const monsterCards = document.getElementById('monster-cards')
 const form = document.getElementById('search-form')
 const battleField = document.getElementById('monsters-field')
