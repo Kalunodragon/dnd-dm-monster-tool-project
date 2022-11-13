@@ -83,25 +83,27 @@ function addCopyOfMonsterToSelection(thisMonster){
     btn.addEventListener('mouseover', (e) => changeColor(e))
     btn.addEventListener('mouseleave', (e) => changeColorBack(e))
     btnSpan.append(btn)
+    monsterClone.querySelector('span').children[0].remove()
     monsterClone.append(btnSpan)
+
 
     newLocation.appendChild(monsterClone)
 }
 
-function changeColor(e){
-    if(e.target.className === 'remove-btn'){
-        e.target.className = 'red-btn-mouse-over'
+function changeColor(btn){
+    if(btn.target.className === 'remove-btn'){
+        btn.target.classList.toggle('red-btn-mouse-over')
     }
-    if(e.target.className === 'add-btn'){
-        e.target.className = 'blue-btn-mouse-over'
+    if(btn.target.className === 'add-btn'){
+        btn.target.classList.toggle('blue-btn-mouse-over')
     }
 }
-function changeColorBack(e){
-    if(e.target.className === 'red-btn-mouse-over'){
-        e.target.classList.remove('red-btn-mouse-over')
+function changeColorBack(btn){
+    if(btn.target.className === 'remove-btn red-btn-mouse-over'){
+        btn.target.classList.toggle('red-btn-mouse-over')
     }
-    if(e.target.className === 'blue-btn-mouse-over'){
-        e.target.classList.remove('blue-btn-mouse-over')
+    if(btn.target.className === 'add-btn blue-btn-mouse-over'){
+        btn.target.classList.toggle('blue-btn-mouse-over')
     }
 }
 
