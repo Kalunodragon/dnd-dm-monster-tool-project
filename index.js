@@ -28,24 +28,24 @@ function displayMonsters(monster){
     const h4 = document.createElement('h4')
     h4.innerText = 'Hit Points: ' + monster.hit_points
     // Button Span
-    const btnSpan = document.createElement('span')
-    btnSpan.className = `${monster.name} buttons`
+    const btnSpan2 = document.createElement('span')
+    btnSpan2.classList = `${monster.name} buttons`
     // Remove Button
-    const btn = document.createElement('button')
-    btn.innerText = 'Remove Monster'
-    btn.id = 'remove-btn'
-    btn.hidden = true
-    btn.addEventListener('click', (e) => deleteMonster(e))
-    btn.addEventListener('mouseover', (e) => changeColor(e))
-    btn.addEventListener('mouseleave', (e) => changeColorBack(e))
+    // const btn = document.createElement('button')
+    // btn.innerText = 'Remove Monster'
+    // btn.className = 'remove-btn'
+    // btn.hidden = true
+    // btn.addEventListener('click', (e) => deleteMonster(e))
+    // btn.addEventListener('mouseover', (e) => changeColor(e))
+    // btn.addEventListener('mouseleave', (e) => changeColorBack(e))
 
     const btn2 = document.createElement('button')
     btn2.innerText = 'Add Monster'
-    btn2.id = 'add-btn'
+    btn2.classList = 'add-btn'
     btn2.addEventListener('click', (e) => addCopyOfMonsterToSelection(e))
     btn2.addEventListener('mouseover', (e) => changeColor(e))
     btn2.addEventListener('mouseleave', (e) => changeColorBack(e))
-    btnSpan.append(btn, btn2)
+    btnSpan2.append(btn2)
     
     const div = document.createElement('div')
     div.id = `${monster.name}`
@@ -56,35 +56,58 @@ function displayMonsters(monster){
         div.append(img)
     }
 
-    div.append(h2, h4, p, p2, p3, btnSpan)
+    div.append(h2, h4, p, p2, p3, btnSpan2)
     monsterCards.appendChild(div)
 }
 
+function displayMonsterCopy(){
+    // Recreate monster card as new element using (previous div, new fetch) with remove btn
+}
+
 function deleteMonster(e){
-    e.target.parentNode.parentNode.hidden = true
+    let selected = e.target.parentNode.parentNode
+    selected.remove()
 }
 
 function addCopyOfMonsterToSelection(thisMonster){
     let newLocation = document.getElementById('monsters-field')
     let monsterClone = thisMonster.target.parentNode.parentNode.cloneNode(true)
+    monsterClone.classList.add('selected-monster')
+    monsterClone.removeAttribute('id')
+
+    const btnSpan = monsterClone.querySelector('span')
+    const btn = document.createElement('button')
+    btn.innerText = 'Remove Monster'
+    btn.className = 'remove-btn'
+    btn.addEventListener('click', (e) => deleteMonster(e))
+    btn.addEventListener('mouseover', (e) => changeColor(e))
+    btn.addEventListener('mouseleave', (e) => changeColorBack(e))
+    btnSpan.append(btn)
+    monsterClone.append(btnSpan)
+
     newLocation.appendChild(monsterClone)
 }
 
 function changeColor(e){
-    if(e.target.id === 'remove-btn'){
+    if(e.target.className === 'remove-btn'){
         e.target.className = 'red-btn-mouse-over'
     }
-    if(e.target.id === 'add-btn'){
+    if(e.target.className === 'add-btn'){
         e.target.className = 'blue-btn-mouse-over'
     }
 }
 function changeColorBack(e){
-    e.target.className = ''
+    if(e.target.className === 'red-btn-mouse-over'){
+        e.target.classList.remove('red-btn-mouse-over')
+    }
+    if(e.target.className === 'blue-btn-mouse-over'){
+        e.target.classList.remove('blue-btn-mouse-over')
+    }
 }
 
 function monsterSearch(e){
     e.preventDefault()
-    let MonsterHeader = document.querySelectorAll('div')
+    let MonsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
     MonsterHeader.forEach(monster => {
         let input = formInput.value.toUpperCase()
         if(input === ''){
@@ -109,7 +132,7 @@ function initialMonstersFetch(){
             singleMonsterFetch(`${monster.url}`)
         })
     })
-    .catch(err => console.alert(err))
+    // .catch(err => console.alert(err))
 }
 
 function singleMonsterFetch(URL){
@@ -119,4 +142,5 @@ function singleMonsterFetch(URL){
         // console.log(data)
         displayMonsters(data)
     })
+    // .catch(err => console.alert(err))
 }
