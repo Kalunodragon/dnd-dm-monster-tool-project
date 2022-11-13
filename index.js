@@ -127,7 +127,7 @@ function monsterSearch(e){
             monster.hidden = false
         }
         if(input.length === 1){
-            input !== monster.id.charAt(0) ? monster.hidden = true: monster.hidden = false      
+            input !== monster.id.charAt(0) ? monster.hidden = true: monster.hidden = false
         }
         if(input.length > 1){
             input !== monster.id.toUpperCase() ? monster.hidden = true : monster.hidden = false
