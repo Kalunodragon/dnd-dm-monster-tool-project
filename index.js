@@ -149,7 +149,7 @@ function initialMonstersFetch(){
 }
 
 function singleMonsterFetch(URL){
-    return fetch(`https:www.dnd5eapi.co${URL}`)
+    return fetch(`https://www.dnd5eapi.co${URL}`)
     .then(resp => resp.json())
     .then(data => {
         // console.log(data)
