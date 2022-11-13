@@ -3,12 +3,15 @@ h1 {
     color: rgb(116, 0, 0);
     font-size: 50px;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-variant: small-caps;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 10px;
 }
 h2 {
+    font-weight: bold;
+    font-variant: small-caps;
     text-align: center;
     margin-top: 10px;
 }
@@ -32,6 +35,7 @@ h3 {
     text-align: center;
 }
 h4 {
+    font-variant: small-caps;
     text-align: center;
 }
 body {
@@ -60,7 +64,23 @@ div {
 }
 p {
     text-align: center;
+    font-variant: small-caps;
 }
+.main::first-letter {
+    font-weight: bold;
+    font-size: xx-large;
+}
+.main::first-line {
+    line-height: 99%;
+}
+#main-text {
+    text-align: justify;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+/* .main::first-letter {
+    initial-letter: 3;
+} */
 img {
     width: 100%;
     border-top-left-radius: 17px;
@@ -71,6 +91,8 @@ span {
     justify-content: center;
 }
 button {
+    font-family: serif;
+    font-variant: small-caps;
     transition: 0.5s;
     color: black;
     border-color: black;
@@ -93,6 +115,9 @@ button {
     background-color: rgb(48, 107, 255);
 }
 form {
+    font-size: x-large;
+    font-variant: small-caps;
+    font-style: oblique;
     text-align: center;
     box-sizing: border-box;
     border-color: rgb(116, 0, 0);
@@ -103,4 +128,7 @@ form {
     border-right-width: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+#input-text-field {
+    width: 50%;
 }
