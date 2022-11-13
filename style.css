@@ -25,28 +25,22 @@ h2 {
     padding-left: 20px;
     padding-right: 20px;
 }
-
 #battle-field {
     color: rgb(116, 0, 0);
 }
-
 h3 {
     text-align: center;
 }
 h4 {
     text-align: center;
 }
-
-
 body {
     margin: 0px;
     background-color: rgb(227, 209, 186);
 }
-
 field {
     text-align: center;
 }
-
 grid {
     margin: 20px;
     display: grid;
@@ -54,23 +48,24 @@ grid {
     grid-auto-rows: minmax(250px, auto);
     grid-gap: 20px;
 }
-
 div {
     border-color: black;
     border-style: solid;
     border-radius: 20px;
+    background-color: rgb(255, 248, 239);
+    box-shadow: 0 0 5px black;
 }
-
+#monster-cards > div:nth-child(even) {
+    background-color: rgb(225, 225, 225);
+}
 p {
     text-align: center;
 }
-
 img {
     width: 100%;
     border-top-left-radius: 17px;
     border-top-right-radius: 17px;
 }
-
 span {
     display: flex;
     justify-content: center;
@@ -97,7 +92,6 @@ button {
     border-color: rgb(48, 107, 255);
     background-color: rgb(48, 107, 255);
 }
-
 form {
     text-align: center;
     box-sizing: border-box;
