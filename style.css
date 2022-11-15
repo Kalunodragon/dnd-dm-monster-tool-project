@@ -48,6 +48,7 @@ field {
 grid {
     margin: 20px;
     display: grid;
+    /* grid templet to create the auto adjusting card sizes */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-auto-rows: minmax(250px, auto);
     grid-gap: 20px;
@@ -78,9 +79,6 @@ p {
     margin-left: 20px;
     margin-right: 20px;
 }
-/* .main::first-letter {
-    initial-letter: 3;
-} */
 img {
     width: 100%;
     border-top-left-radius: 17px;
