@@ -2,7 +2,6 @@
 const formInput = document.getElementById('input-text-field')
 const monsterCards = document.getElementById('monster-cards')
 const form = document.getElementById('search-form')
-const battleField = document.getElementById('monsters-field')
 
 // Page initial Fetch for loading Monster Cards
 initialMonstersFetch()
@@ -117,11 +116,11 @@ function changeColorBack(btn){
     }
 }
 
-// Monster Search Function, Allows for Name search, Sorting by letter, And Clears to show all Monster Cards
+// Monster Search Function, Allows for Name search, Search by letter, And Clears to show all Monster Cards
 function monsterSearch(e){
     e.preventDefault()
-    let MonsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
-    MonsterHeader.forEach(monster => {
+    let monsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
+    monsterHeader.forEach(monster => {
         let input = formInput.value.toUpperCase()
         if(input === ''){
             monster.hidden = false
@@ -152,7 +151,6 @@ function singleMonsterFetch(URL){
     return fetch(`https://www.dnd5eapi.co${URL}`)
     .then(resp => resp.json())
     .then(data => {
-        // console.log(data)
         displayMonsters(data)
     })
     .catch(err => console.warn(err))
