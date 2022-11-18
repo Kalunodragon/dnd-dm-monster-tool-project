@@ -64,15 +64,15 @@ function displayMonsters(monster){
 // Functions
 // Deletes Monster from the Selected Monsters area
 function deleteMonster(e){
-    let selected = e.target.parentNode.parentNode
+    const selected = e.target.parentNode.parentNode
     selected.remove()
 }
 
 // Adds a copy of the selected monster to the Selected Monster Area
 // Also adds the Event Listeners for the Remove Monster button
 function addCopyOfMonsterToSelection(thisMonster){
-    let newLocation = document.getElementById('monsters-field')
-    let monsterClone = thisMonster.target.parentNode.parentNode.cloneNode(true)
+    const newLocation = document.getElementById('monsters-field')
+    const monsterClone = thisMonster.target.parentNode.parentNode.cloneNode(true)
 
     // Adding Class, Removing id, Removing Add Button
     monsterClone.classList.add('selected-monster')
@@ -119,9 +119,9 @@ function changeColorBack(btn){
 // Monster Search Function, Allows for Name search, Search by letter, And Clears to show all Monster Cards
 function monsterSearch(e){
     e.preventDefault()
-    let monsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
+    const monsterHeader = document.getElementById('monster-cards').querySelectorAll('div')
     monsterHeader.forEach(monster => {
-        let input = formInput.value.toUpperCase()
+        const input = formInput.value.toUpperCase()
         if(input === ''){
             monster.hidden = false
         }
@@ -144,7 +144,7 @@ function initialMonstersFetch(){
             singleMonsterFetch(`${monster.url}`)
         })
     })
-    .catch(err => console.warn(err))
+    .catch(err => console.log(err))
 }
 
 function singleMonsterFetch(URL){
@@ -153,5 +153,5 @@ function singleMonsterFetch(URL){
     .then(data => {
         displayMonsters(data)
     })
-    .catch(err => console.warn(err))
+    .catch(err => console.log(err))
 }
