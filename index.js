@@ -12,9 +12,13 @@ form.addEventListener('submit', (e) => monsterSearch(e))
 // CREATION FUNCTION ------------------------------------------------------------------------------
 // Creates all the monster cards based off of information from the initial fetch request
 function displayMonsters(monster){
+    console.log(monster)
     // Monster Name
     const h2 = document.createElement('h2')
     h2.innerText = monster.name
+
+    const h3 = document.createElement('h4')
+    h3.innerText = 'Hit Dice: ' + monster.hit_dice
 
     // Monster Alignment
     const p = document.createElement('p')
@@ -30,7 +34,7 @@ function displayMonsters(monster){
 
     // Hit Points
     const h4 = document.createElement('h4')
-    h4.innerText = 'Hit Points: ' + monster.hit_points
+    h4.innerText = 'Hit Point Average: ' + monster.hit_points
 
     // Button Span
     const btnSpan2 = document.createElement('span')
@@ -56,7 +60,7 @@ function displayMonsters(monster){
         div.append(img)
     }
 
-    div.append(h2, h4, p, p2, p3, btnSpan2)
+    div.append(h2, h4, h3, p, p2, p3, btnSpan2)
     monsterCards.appendChild(div)
 }
 // END OF CREATION FUNCTION------------------------------------------------------------------------
