@@ -17,6 +17,7 @@ function displayMonsters(monster){
     const h2 = document.createElement('h2')
     h2.innerText = monster.name
 
+    // Monster Hit Dice
     const h3 = document.createElement('h4')
     h3.innerText = 'Hit Dice: ' + monster.hit_dice
 
