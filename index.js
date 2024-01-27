@@ -155,3 +155,4 @@ function singleMonsterFetch(URL){
     })
     .catch(err => console.log(err))
 }
+
